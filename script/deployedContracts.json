@@ -1,0 +1,13 @@
+{
+  "exocore": {
+    "proxyAdmin": "0x0263191FD486f33f8Fe27180738471B9E33b811B",
+    "upgrader": "0x2C99AE2419e105F8A1E4dB8f8ED3c13980438260",
+    "upgraderLogic": "0xFFef6c7bE4a29Ac69C67012A98D4Eb7Eb22219F5"
+  },
+  "sepolia": {
+    "customProxyAdmin": "0x2D910b4928b7c5F7C8d164383A991C0d8c679a1a",
+    "logicOne": "0xAC0A3AD1366F8EcE47d9BCe6Ad0190cB365BA862",
+    "logicTwo": "0xA223895b1fFf405A9f634781798e5D99573a7158",
+    "proxy": "0xD89E476F0f61eefF40f699B8BB10B72F9EB98918"
+  }
+}

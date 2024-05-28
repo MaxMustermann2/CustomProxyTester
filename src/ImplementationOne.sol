@@ -2,10 +2,11 @@
 pragma solidity ^0.8.13;
 
 import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import {OwnableUpgradeable} from "@openzeppelin-upgradeable/contracts/access/OwnableUpgradeable.sol";
 import {LzReceiver} from "./LzReceiver.sol";
 import {CustomProxyAdmin} from "./CustomProxyAdmin.sol";
 
-contract Counter is Initializable, LzReceiver {
+contract Counter is Initializable, OwnableUpgradeable, LzReceiver {
     modifier onlyCalledFromThis() {
         require(
             msg.sender == address(this),
@@ -22,6 +23,7 @@ contract Counter is Initializable, LzReceiver {
 
     function initialize(
         uint256 _number,
+        address _owner,
         address _customProxyAdmin,
         address _newImplementation,
         bytes calldata _data
@@ -34,6 +36,7 @@ contract Counter is Initializable, LzReceiver {
         // We did not initialize `secondNumber` in ImplementationOne.
         secondNumber = 0;
         whiteListFunctionSelectors[Action.UPGRADE] = this.upgrade.selector;
+        __Ownable_init_unchained(_owner);
     }
 
     function increment() public {

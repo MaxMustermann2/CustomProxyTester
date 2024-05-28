@@ -7,8 +7,18 @@ import {ProxyAdmin} from "@openzeppelin/contracts/proxy/transparent/ProxyAdmin.s
 contract CustomProxyAdmin is ProxyAdmin {
     address public selfUpgradingProxy;
 
-    constructor(address _selfUpgradingProxy) ProxyAdmin(msg.sender) {
-        selfUpgradingProxy = _selfUpgradingProxy;
+    constructor() ProxyAdmin(msg.sender) {}
+
+    function setSelfUpgradingProxy(address proxy) public {
+        require(
+            selfUpgradingProxy == address(0),
+            "CustomProxyAdmin: selfUpgradingProxy already set"
+        );
+        require(
+            proxy != address(0),
+            "CustomProxyAdmin: selfUpgradingProxy cannot be the zero address"
+        );
+        selfUpgradingProxy = proxy;
     }
 
     function changeImplementation(
